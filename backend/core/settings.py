@@ -91,6 +91,10 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
 ]
 
+_drf_renderers = ['rest_framework.renderers.JSONRenderer']
+if DEBUG:
+    _drf_renderers.append('rest_framework.renderers.BrowsableAPIRenderer')
+
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
@@ -98,5 +102,6 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 20,
+    'PAGE_SIZE': 10,
+    'DEFAULT_RENDERER_CLASSES': _drf_renderers,
 }
