@@ -1,16 +1,18 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
-import Home from '@/pages/Home'
-import Projects from '@/pages/Projects'
+import Navbar      from '@/components/layout/Navbar'
+import Footer      from '@/components/layout/Footer'
+import ScrollToTop from '@/components/utils/ScrollToTop'
+import Home          from '@/pages/Home'
+import Projects      from '@/pages/Projects'
 import ProjectDetail from '@/pages/ProjectDetail'
-import Blog from '@/pages/Blog'
+import Blog          from '@/pages/Blog'
 import ArticleDetail from '@/pages/ArticleDetail'
-import NotFound from '@/pages/NotFound'
+import NotFound      from '@/pages/NotFound'
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="min-h-screen flex flex-col bg-white">
         <Navbar />
         <main className="flex-1">

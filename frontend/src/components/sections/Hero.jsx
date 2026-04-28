@@ -56,7 +56,11 @@ export default function Hero() {
           {/* ── Droite — avatar placeholder ────────── */}
           <div className="flex justify-center">
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl bg-gradient-to-br from-accent to-[#4a9fd8] flex items-center justify-center shadow-2xl border-4 border-white/10 select-none">
-              <span className="text-white/80 text-8xl font-bold">GT</span>
+                 <img
+  src="C:\Users\dell\projets\portfolio\frontend\public\photo.png"
+  alt="Ghislain Touré"
+  className="w-80 h-80 rounded-full object-cover shadow-xl"
+/>          
             </div>
           </div>
 
