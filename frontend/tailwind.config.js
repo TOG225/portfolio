@@ -8,6 +8,9 @@ export default {
         accent:  '#2E75B6',
         'grey-text': '#555555',
       },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
     },
   },
   plugins: [],
