@@ -2,15 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+html { scroll-behavior: smooth; }
 
-  body {
-    color: #1A1A1A;
-    background-color: #ffffff;
-    font-family: 'Inter', system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
+body {
+  background-color: #FFFFFF;
+  color: #1A1A1A;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+::selection { background-color: #0B5FFF; color: #FFFFFF; }

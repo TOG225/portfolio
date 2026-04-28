@@ -3,7 +3,7 @@ import { Github, FileText, ArrowRight } from 'lucide-react'
 
 function TechTag({ name }) {
   return (
-    <span className="text-xs bg-blue-50 text-accent font-medium px-2 py-0.5 rounded">
+    <span className="text-xs bg-blue-50 text-accent font-medium px-2 py-0.5 rounded hover:scale-105 transition-transform">
       {name}
     </span>
   )
@@ -27,12 +27,19 @@ export default function ProjectCard({ project }) {
   const extraStack   = tech_stack.length - 4
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-200 flex flex-col overflow-hidden">
+    <div className="group bg-white rounded-xl border border-gray-100 shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-200 flex flex-col overflow-hidden">
 
       {/* Thumbnail */}
       <div className="relative h-40 bg-gradient-to-br from-primary to-accent flex items-center justify-center overflow-hidden">
         {thumbnail
-          ? <img src={thumbnail} alt={title} className="w-full h-full object-cover" />
+          ? (
+            <img
+              src={thumbnail}
+              alt={title}
+              loading="lazy"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          )
           : <span className="text-white/30 text-5xl font-bold select-none">{initials}</span>
         }
 
@@ -53,7 +60,9 @@ export default function ProjectCard({ project }) {
 
       {/* Body */}
       <div className="flex flex-col flex-1 p-5 gap-3">
-        <h3 className="font-bold text-primary text-base leading-snug">{title}</h3>
+        <h3 className="font-bold text-primary text-base leading-snug group-hover:text-accent transition-colors">
+          {title}
+        </h3>
 
         <p className="text-sm text-grey-text line-clamp-2 flex-1 leading-relaxed">
           {description_short}
@@ -78,12 +87,13 @@ export default function ProjectCard({ project }) {
             Voir détails <ArrowRight size={12} />
           </Link>
           {has_report && (
-            <button
-              title="Télécharger le rapport PDF"
+            <Link
+              to={`/projects/${slug}`}
+              title="Voir le rapport PDF"
               className="flex items-center gap-1 border border-accent text-accent text-xs font-semibold px-3 py-2 rounded-lg hover:bg-accent hover:text-white transition-colors"
             >
               <FileText size={12} /> PDF
-            </button>
+            </Link>
           )}
           {github_url && (
             <a
@@ -91,6 +101,7 @@ export default function ProjectCard({ project }) {
               target="_blank"
               rel="noreferrer"
               title="Voir sur GitHub"
+              aria-label={`GitHub — ${title}`}
               className="flex items-center px-3 py-2 border border-gray-200 text-grey-text rounded-lg hover:border-primary hover:text-primary transition-colors"
             >
               <Github size={14} />
