@@ -16,7 +16,6 @@ services:
       - portfolio_network
 
   backend:
-    # TODO étape 2 — image Django à construire depuis backend/
     build: ./backend
     container_name: portfolio_backend
     restart: unless-stopped
@@ -29,12 +28,18 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       DATABASE_HOST: postgres
       DATABASE_PORT: 5432
+    volumes:
+      - ./backend:/app
+      - media_data:/app/media
     ports:
       - "8000:8000"
     depends_on:
       - postgres
     networks:
       - portfolio_network
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
 
   frontend:
     # TODO étape 4 — image React/Vite à construire depuis frontend/
@@ -54,6 +59,8 @@ services:
 volumes:
   postgres_data:
     name: portfolio_postgres_data
+  media_data:
+    name: portfolio_media_data
 
 networks:
   portfolio_network:
