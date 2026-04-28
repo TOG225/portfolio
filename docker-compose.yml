@@ -1,0 +1,61 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: portfolio_db
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - portfolio_network
+
+  backend:
+    # TODO étape 2 — image Django à construire depuis backend/
+    build: ./backend
+    container_name: portfolio_backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DJANGO_DEBUG: ${DJANGO_DEBUG}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    networks:
+      - portfolio_network
+
+  frontend:
+    # TODO étape 4 — image React/Vite à construire depuis frontend/
+    build: ./frontend
+    container_name: portfolio_frontend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      VITE_API_URL: ${VITE_API_URL}
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    networks:
+      - portfolio_network
+
+volumes:
+  postgres_data:
+    name: portfolio_postgres_data
+
+networks:
+  portfolio_network:
+    driver: bridge
+    name: portfolio_network
