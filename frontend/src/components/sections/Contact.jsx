@@ -32,12 +32,12 @@ export default function Contact() {
     <section id="contact" className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4">
         <FadeIn direction="up">
-          <SectionTitle subtitle="Disponible pour un stage PFA">Contact</SectionTitle>
+          <SectionTitle subtitle="Disponible pour des projets cybersécurité">Contact</SectionTitle>
         </FadeIn>
 
         <FadeIn direction="up" delay={0.05}>
           <p className="text-grey-text mb-10 max-w-xl leading-relaxed">
-            Une question, une opportunité de stage, ou juste discuter cybersécurité ?
+            Une question, une opportunité de mission, ou juste discuter cybersécurité ?
             N'hésitez pas à me contacter !
           </p>
         </FadeIn>

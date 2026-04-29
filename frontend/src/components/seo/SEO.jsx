@@ -1,11 +1,11 @@
 import { Helmet } from 'react-helmet-async'
 
-const SITE_NAME  = 'Ghislain Touré — Portfolio Cybersécurité'
+const SITE_NAME  = '0xL@toure'
 const DEFAULT_DESC = 'Étudiant ingénieur en cybersécurité à HESTIM Casablanca, spécialisé en pentest, SOC et gouvernance NIST 2.0.'
 const SITE_URL   = 'https://ghislain-toure.dev'
 
 export default function SEO({ title, description, image, type = 'website', url, jsonLd }) {
-  const fullTitle = title ? `${title} | Ghislain Touré` : SITE_NAME
+  const fullTitle = title ? `${title} | 0xL@toure` : SITE_NAME
   const desc      = description ?? DEFAULT_DESC
   const canonical = url ? `${SITE_URL}${url}` : SITE_URL
   const ogImage   = image ?? `${SITE_URL}/og-cover.png`
@@ -15,6 +15,9 @@ export default function SEO({ title, description, image, type = 'website', url, 
       <title>{fullTitle}</title>
       <meta name="description"        content={desc} />
       <link rel="canonical"           href={canonical} />
+      <link rel="icon"               type="image/jpeg" href="/ananas.jpg?v=1" />
+      <link rel="shortcut icon"      href="/ananas.jpg?v=1" />
+      <link rel="apple-touch-icon"   href="/ananas.jpg?v=1" />
 
       {/* Open Graph */}
       <meta property="og:title"       content={fullTitle} />

@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import SEO from '@/components/seo/SEO'
 import { useApi } from '@/hooks/useApi'
+import Pagination from '@/components/ui/Pagination'
 
 function getInitials(title) {
   return title.split(' ').filter(w => w.length > 2).map(w => w[0]).slice(0, 3).join('').toUpperCase() || 'P'
@@ -56,12 +57,19 @@ export default function Projects() {
   const [searchParams, setSearchParams] = useSearchParams()
   const tab = searchParams.get('tab') || 'academic'
   const [activeCategory, setActiveCategory] = useState(null)
+  const [page, setPage] = useState(1)
+  const [pageSize, setPageSize] = useState(10)
 
   useEffect(() => { localStorage.setItem('projects_last_tab', tab) }, [tab])
 
-  const params = useMemo(() => ({ project_type: tab, page_size: 50 }), [tab])
+  const params = useMemo(() => {
+    if (activeCategory) return { project_type: tab, page_size: 50 }
+    return { project_type: tab, page, page_size: pageSize }
+  }, [tab, page, pageSize, activeCategory])
+
   const { data, loading } = useApi('/projects/projects/', params)
   const projects = useMemo(() => data?.results ?? [], [data])
+  const count = data?.count ?? 0
 
   const categories = useMemo(() => {
     const seen = {}
@@ -87,12 +95,18 @@ export default function Projects() {
   const handleTabChange = (newTab) => {
     setSearchParams({ tab: newTab })
     setActiveCategory(null)
+    setPage(1)
+  }
+
+  const handleCategoryChange = (catName) => {
+    setActiveCategory(activeCategory === catName ? null : catName)
+    setPage(1)
   }
 
   return (
     <>
       <SEO
-        title={`${t('projects.title')} — Ghislain Touré`}
+        title={t('projects.title')}
         description="Projets cybersécurité académiques et personnels : pentest, SOC, MISP, forensique."
         url="/projects"
       />
@@ -120,7 +134,7 @@ export default function Projects() {
         {!loading && categories.length > 1 && (
           <div className="flex flex-wrap gap-2 mb-8">
             <button
-              onClick={() => setActiveCategory(null)}
+              onClick={() => { setActiveCategory(null); setPage(1) }}
               className={`text-xs px-3 py-1 rounded-full border transition-colors ${
                 !activeCategory
                   ? 'border-blue-500 text-blue-600 bg-blue-50'
@@ -132,7 +146,7 @@ export default function Projects() {
             {categories.map(cat => (
               <button
                 key={cat.name}
-                onClick={() => setActiveCategory(activeCategory === cat.name ? null : cat.name)}
+                onClick={() => handleCategoryChange(cat.name)}
                 className={`text-xs px-3 py-1 rounded-full border transition-colors ${
                   activeCategory === cat.name
                     ? 'border-blue-500 text-blue-600 bg-blue-50'
@@ -151,7 +165,7 @@ export default function Projects() {
           <p className="text-sm text-gray-500 italic">{t('projects.no_projects')}</p>
         )}
 
-        {/* Groupé par catégorie (pas de filtre actif) — academic ET personal */}
+        {/* Groupé par catégorie (pas de filtre actif) */}
         {!loading && grouped && Object.keys(grouped).length > 0 && (
           <div className="space-y-10">
             {Object.entries(grouped).map(([catName, catProjects]) => (
@@ -176,6 +190,17 @@ export default function Projects() {
               <li key={p.slug}><ProjectCard project={p} /></li>
             ))}
           </ul>
+        )}
+
+        {/* Pagination — uniquement sans filtre catégorie actif */}
+        {!activeCategory && (
+          <Pagination
+            count={count}
+            page={page}
+            pageSize={pageSize}
+            onPageChange={setPage}
+            onPageSizeChange={(s) => { setPageSize(s); setPage(1) }}
+          />
         )}
       </section>
     </>

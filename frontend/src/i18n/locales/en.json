@@ -51,7 +51,18 @@
     "subtitle": "Technical notes, lessons learned and cybersecurity insights.",
     "no_articles": "No writings yet.",
     "min_read": "min read",
-    "back": "← Back to writings"
+    "back": "← Back to writings",
+    "related_title": "Related articles",
+    "comments_title": "Comments",
+    "no_comments": "Be the first to comment.",
+    "leave_comment": "Leave a comment",
+    "comment_moderation": "Comments are moderated before publication.",
+    "comment_name": "Name *",
+    "comment_email": "Email (optional)",
+    "comment_placeholder": "Your comment...",
+    "comment_submit": "Submit",
+    "comment_sent": "Thank you! Your comment will be visible after moderation.",
+    "comment_error": "An error occurred. Please try again."
   },
   "contact": {
     "title": "Contact",

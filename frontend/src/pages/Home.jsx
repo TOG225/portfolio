@@ -11,7 +11,6 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Ghislain Touré — Portfolio Cybersécurité"
         description="Portfolio cybersécurité d'un étudiant ingénieur HESTIM. Projets pentest, SOC, MISP, forensique, automatisation."
         url="/"
       />

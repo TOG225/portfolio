@@ -2,12 +2,50 @@ import { useTranslation } from 'react-i18next'
 import { useApi } from '@/hooks/useApi'
 
 const PLATFORM_INFO = {
-  tryhackme:   { name: 'TryHackMe',               icon: '🎯' },
-  hackthebox:  { name: 'HackTheBox',               icon: '⬢'  },
-  rootme:      { name: 'Root-Me',                  icon: '🇫🇷' },
-  portswigger: { name: 'PortSwigger Web Security', icon: '🕷️' },
-  vulnhub:     { name: 'VulnHub',                  icon: '💾' },
-  pwncollege:  { name: 'pwn.college',              icon: '🎓' },
+  tryhackme:   {
+    name: 'TryHackMe',
+    icon: '🎯',
+    logo: 'https://www.google.com/s2/favicons?domain=tryhackme.com&sz=32',
+  },
+  hackthebox:  {
+    name: 'HackTheBox',
+    icon: '⬢',
+    logo: 'https://www.google.com/s2/favicons?domain=hackthebox.com&sz=32',
+  },
+  rootme:      {
+    name: 'Root-Me',
+    icon: '🇫🇷',
+    logo: 'https://www.google.com/s2/favicons?domain=root-me.org&sz=32',
+  },
+  portswigger: {
+    name: 'PortSwigger Web Security',
+    icon: '🕷️',
+    logo: 'https://www.google.com/s2/favicons?domain=portswigger.net&sz=32',
+  },
+  vulnhub:     {
+    name: 'VulnHub',
+    icon: '💾',
+    logo: 'https://www.google.com/s2/favicons?domain=vulnhub.com&sz=32',
+  },
+  pwncollege:  {
+    name: 'pwn.college',
+    icon: '🎓',
+    logo: 'https://www.google.com/s2/favicons?domain=pwn.college&sz=32',
+  },
+}
+
+function PlatformIcon({ info }) {
+  if (info.logo) {
+    return (
+      <img
+        src={info.logo}
+        alt={info.name}
+        className="w-8 h-8 rounded object-contain"
+        onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'block' }}
+      />
+    )
+  }
+  return <span className="text-2xl">{info.icon}</span>
 }
 
 export default function TryHackMeProfile() {
@@ -38,7 +76,10 @@ export default function TryHackMeProfile() {
                 className="block border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-sm transition-all"
               >
                 <div className="flex items-start gap-3">
-                  <div className="text-2xl">{info.icon}</div>
+                  <div className="flex-shrink-0 flex items-center justify-center w-8 h-8">
+                    <PlatformIcon info={info} />
+                    <span className="text-2xl hidden">{info.icon}</span>
+                  </div>
                   <div className="flex-1 min-w-0">
                     <div className="font-semibold text-gray-900">{info.name}</div>
                     <div className="text-xs text-gray-500 truncate">@{p.username}</div>

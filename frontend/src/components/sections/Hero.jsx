@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
       <h1 className="text-3xl font-bold mb-2">{t('hero.title')}</h1>
-      <p className="text-lg font-mono text-gray-500 mb-6">0xGhislain</p>
+      <p className="text-lg font-mono text-gray-500 mb-6">0xL@toure</p>
 
       <p className="text-base text-gray-800 leading-relaxed mb-6">
         {t('hero.bio_p1')}

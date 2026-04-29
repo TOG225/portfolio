@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import SEO from '@/components/seo/SEO'
 import { useApi } from '@/hooks/useApi'
+import Pagination from '@/components/ui/Pagination'
 
 function formatDate(isoDate) {
   if (!isoDate) return ''
@@ -14,12 +16,16 @@ function getInitials(title) {
 
 export default function Blog() {
   const { t } = useTranslation()
-  const { data, loading } = useApi('/blog/articles/', { page_size: 50, ordering: '-published_at' })
+  const [page, setPage] = useState(1)
+  const [pageSize, setPageSize] = useState(10)
+
+  const { data, loading } = useApi('/blog/articles/', { page, page_size: pageSize, ordering: '-published_at' })
   const articles = data?.results ?? []
+  const count = data?.count ?? 0
 
   return (
     <>
-      <SEO title={`${t('blog.title')} — Ghislain Touré`} description={t('blog.subtitle')} url="/blog" />
+      <SEO title={t('blog.title')} description={t('blog.subtitle')} url="/blog" />
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
         <h1 className="text-3xl font-bold mb-3">{t('blog.title')}</h1>
         <p className="text-sm text-gray-600 mb-8">{t('blog.subtitle')}</p>
@@ -67,6 +73,14 @@ export default function Blog() {
             ))}
           </ul>
         )}
+
+        <Pagination
+          count={count}
+          page={page}
+          pageSize={pageSize}
+          onPageChange={setPage}
+          onPageSizeChange={(s) => { setPageSize(s); setPage(1) }}
+        />
       </section>
     </>
   )

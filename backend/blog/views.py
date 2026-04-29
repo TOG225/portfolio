@@ -1,7 +1,18 @@
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.throttling import AnonRateThrottle
+from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Tag, Article
-from .serializers import TagSerializer, ArticleListSerializer, ArticleDetailSerializer
+from .models import Tag, Article, Comment
+from .serializers import (
+    TagSerializer, ArticleListSerializer, ArticleDetailSerializer,
+    CommentSerializer, CommentCreateSerializer,
+)
+
+
+class CommentRateThrottle(AnonRateThrottle):
+    rate = '5/hour'
 
 
 class TagViewSet(viewsets.ReadOnlyModelViewSet):
@@ -27,3 +38,24 @@ class ArticleViewSet(viewsets.ReadOnlyModelViewSet):
         if self.action == 'retrieve':
             return ArticleDetailSerializer
         return ArticleListSerializer
+
+
+class ArticleCommentView(APIView):
+    throttle_classes = [CommentRateThrottle]
+
+    def get(self, request, slug):
+        article = get_object_or_404(Article, slug=slug, is_published=True)
+        comments = article.comments.filter(is_approved=True)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, slug):
+        article = get_object_or_404(Article, slug=slug, is_published=True)
+        serializer = CommentCreateSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(article=article)
+            return Response(
+                {'detail': 'Commentaire soumis — il sera visible après modération.'},
+                status=status.HTTP_201_CREATED,
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

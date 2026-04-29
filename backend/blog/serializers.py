@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Tag, Article
+from .models import Tag, Article, Comment
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -44,3 +44,16 @@ class ArticleDetailSerializer(serializers.ModelSerializer):
             return None
         request = self.context.get('request')
         return request.build_absolute_uri(obj.cover_image.url) if request else obj.cover_image.url
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['id', 'author_name', 'content', 'created_at']
+        read_only_fields = ['id', 'created_at']
+
+
+class CommentCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['author_name', 'author_email', 'content']

@@ -41,7 +41,7 @@ export default function ProjectDetail() {
   return (
     <>
       <SEO
-        title={`${project.title} — Ghislain Touré`}
+        title={project.title}
         description={project.description_short}
         image={project.thumbnail}
       />

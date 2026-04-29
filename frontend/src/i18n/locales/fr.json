@@ -8,8 +8,8 @@
   },
   "hero": {
     "title": "À propos",
-    "bio_p1": "Étudiant en deuxième année du cycle ingénieur en Informatique, IA & Cybersécurité à HESTIM Casablanca. Orienté sécurité offensive (pentest) et SOC analyst, je m'intéresse particulièrement à la threat intelligence avec MISP, à l'automatisation d'infrastructures défensives (Ansible, Terraform) et aux frameworks de gouvernance NIST 2.0.",
-    "bio_p2": "Actuellement à la recherche d'un stage PFA pour mettre en pratique ces compétences sur des projets concrets.",
+    "bio_p1": "Étudiant en cycle ingénieur Informatique, IA & Cybersécurité à HESTIM Casablanca, je suis orienté sécurité offensive (pentest) et analyse SOC.",
+    "bio_p2": "Je développe mes compétences via TryHackMe, la threat intelligence avec MISP, l'automatisation défensive (Ansible, Terraform) et les bonnes pratiques NIST 2.0.",
     "cv": "→ CV"
   },
   "experience": {
@@ -51,7 +51,18 @@
     "subtitle": "Notes techniques, retours d'expérience et veille cybersécurité.",
     "no_articles": "Aucun article pour le moment.",
     "min_read": "min de lecture",
-    "back": "← Retour aux articles"
+    "back": "← Retour aux articles",
+    "related_title": "Articles similaires",
+    "comments_title": "Commentaires",
+    "no_comments": "Soyez le premier à commenter.",
+    "leave_comment": "Laisser un commentaire",
+    "comment_moderation": "Les commentaires sont modérés avant publication.",
+    "comment_name": "Nom *",
+    "comment_email": "Email (optionnel)",
+    "comment_placeholder": "Votre commentaire...",
+    "comment_submit": "Envoyer",
+    "comment_sent": "Merci ! Votre commentaire sera visible après modération.",
+    "comment_error": "Une erreur est survenue. Veuillez réessayer."
   },
   "contact": {
     "title": "Contact",

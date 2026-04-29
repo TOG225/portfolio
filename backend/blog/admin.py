@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tag, Article
+from .models import Tag, Article, Comment
 
 
 @admin.register(Tag)
@@ -32,4 +32,19 @@ class ArticleAdmin(admin.ModelAdmin):
         ('Classification', {'fields': ('tags',)}),
         ('Publication', {'fields': ('is_published', 'published_at', 'reading_time')}),
         ('Dates système', {'fields': ('created_at', 'updated_at'), 'classes': ('collapse',)}),
+    )
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('author_name', 'article', 'is_approved', 'created_at')
+    list_filter = ('is_approved',)
+    list_editable = ('is_approved',)
+    search_fields = ('author_name', 'content', 'article__title')
+    ordering = ('-created_at',)
+    readonly_fields = ('created_at',)
+    fieldsets = (
+        ('Commentaire', {'fields': ('article', 'author_name', 'author_email', 'content')}),
+        ('Modération', {'fields': ('is_approved',)}),
+        ('Dates système', {'fields': ('created_at',), 'classes': ('collapse',)}),
     )

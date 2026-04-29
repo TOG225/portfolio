@@ -21,17 +21,15 @@ export default function About() {
           <FadeIn direction="left" delay={0.1}>
             <div className="space-y-4 text-grey-text leading-relaxed text-base">
               <p>
-                Étudiant en deuxième année du cycle ingénieur en Informatique, IA &amp;
-                Cybersécurité à{' '}
-                <strong className="text-primary">HESTIM Casablanca</strong>, je me
-                spécialise dans la sécurité offensive et la défense des systèmes
-                d'information.
+                Étudiant en cycle ingénieur en Informatique, IA &amp; Cybersécurité
+                à <strong className="text-primary">HESTIM Casablanca</strong>, je me
+                spécialise en sécurité offensive (pentest) et en analyse SOC.
               </p>
               <p>
-                Mon approche : combiner pentest, SOC et gouvernance NIST 2.0 pour
-                comprendre les deux faces de la cybersécurité. Actuellement à la
-                recherche d'un{' '}
-                <strong className="text-primary">stage PFA</strong>.
+                Mon approche combine pratique terrain sur{' '}
+                <strong className="text-primary">TryHackMe</strong>, threat
+                intelligence avec MISP, automatisation défensive (Ansible,
+                Terraform) et gouvernance NIST 2.0.
               </p>
             </div>
           </FadeIn>

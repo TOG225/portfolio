@@ -9,7 +9,7 @@ export default function CTF() {
   return (
     <>
       <SEO
-        title={`${t('ctf.title')} — Ghislain Touré`}
+        title={t('ctf.title')}
         description="Expérience CTF, compétitions de cybersécurité et profils plateformes."
         url="/ctf"
       />

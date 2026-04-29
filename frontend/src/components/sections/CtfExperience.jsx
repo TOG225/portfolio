@@ -10,7 +10,7 @@ export default function CtfExperience() {
 
   return (
     <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-200">
-      <h2 className="text-xl font-bold mb-6">🏆 {t('ctf.title')}</h2>
+      <h2 className="text-xl font-bold mb-6"> {t('ctf.title')}</h2>
 
       {loading && <p className="text-sm text-gray-500">{t('common.loading')}</p>}
 
