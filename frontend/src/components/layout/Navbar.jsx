@@ -24,7 +24,7 @@ export default function Navbar() {
     <nav className="border-b border-gray-200 bg-white sticky top-0 z-50" role="navigation">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <Link to="/" className="font-mono text-sm font-bold text-gray-900 hover:text-gray-700">
-          0xGhislain
+          0xL@toure
         </Link>
 
         {/* Desktop nav */}
