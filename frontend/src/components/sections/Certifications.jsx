@@ -33,13 +33,13 @@ export default function Certifications() {
   const certs = (data?.results && data.results.length > 0) ? data.results : FALLBACK_CERTS
 
   return (
-    <section className="max-w-2xl mx-auto px-6 py-8 border-t border-gray-200">
+    <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-200">
       <h2 className="text-xl font-bold mb-6">{t('certifications.title')}</h2>
 
       {loading && <p className="text-sm text-gray-500">{t('common.loading')}</p>}
 
       {!loading && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {certs.map(cert => {
             const Wrapper = cert.credential_url ? 'a' : 'div'
             const props = cert.credential_url

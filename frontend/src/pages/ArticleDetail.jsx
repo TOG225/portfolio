@@ -16,7 +16,7 @@ export default function ArticleDetail() {
 
   if (loading) {
     return (
-      <div className="max-w-2xl mx-auto px-6 pt-20">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
         <p className="text-sm text-gray-500">{t('common.loading')}</p>
       </div>
     )
@@ -26,7 +26,7 @@ export default function ArticleDetail() {
     return (
       <>
         <SEO title="Article not found" />
-        <div className="max-w-2xl mx-auto px-6 pt-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
           <p className="text-sm text-gray-700 mb-4">Article not found.</p>
           <Link to="/blog" className="text-blue-600 hover:underline text-sm">{t('blog.back')}</Link>
         </div>
@@ -49,7 +49,7 @@ export default function ArticleDetail() {
         url={`/blog/${slug}`}
         type="article"
       />
-      <div className="max-w-2xl mx-auto px-6 pt-16 pb-16">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16">
 
         <Link to="/blog" className="text-sm text-blue-600 hover:underline block mb-8">
           {t('blog.back')}

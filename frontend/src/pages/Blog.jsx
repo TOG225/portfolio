@@ -20,7 +20,7 @@ export default function Blog() {
   return (
     <>
       <SEO title={`${t('blog.title')} — Ghislain Touré`} description={t('blog.subtitle')} url="/blog" />
-      <section className="max-w-2xl mx-auto px-6 pt-20 pb-12">
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
         <h1 className="text-3xl font-bold mb-3">{t('blog.title')}</h1>
         <p className="text-sm text-gray-600 mb-8">{t('blog.subtitle')}</p>
 

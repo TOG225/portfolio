@@ -13,3 +13,8 @@ body {
 }
 
 ::selection { background-color: #0B5FFF; color: #FFFFFF; }
+
+@media (max-width: 640px) {
+  h1 { font-size: 1.875rem !important; line-height: 2.25rem !important; }
+  h2 { font-size: 1.25rem !important; }
+}

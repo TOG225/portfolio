@@ -14,7 +14,7 @@ export default function FeaturedProjects() {
     title.split(' ').filter(w => w.length > 2).map(w => w[0]).slice(0, 3).join('').toUpperCase()
 
   return (
-    <section className="max-w-2xl mx-auto px-6 py-8 border-t border-gray-200">
+    <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-200">
       <h2 className="text-xl font-bold mb-6">{t('projects.title')}</h2>
 
       {(loadingFeatured || loadingAll) && (
@@ -59,7 +59,7 @@ export default function FeaturedProjects() {
           <p className="text-xs uppercase tracking-wider text-gray-500 mb-3">
             {t('projects.all_title')}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {allProjects.map(p => (
               <Link
                 key={p.slug}

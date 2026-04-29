@@ -41,7 +41,7 @@ export default function Contact() {
         description="Contactez Ghislain Touré, étudiant ingénieur en cybersécurité."
         url="/contact"
       />
-      <section className="max-w-2xl mx-auto px-6 pt-20 pb-12">
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
         <h1 className="text-3xl font-bold mb-6">{t('contact.title')}</h1>
         <p className="text-base text-gray-800 leading-relaxed mb-8">{t('contact.intro')}</p>
 

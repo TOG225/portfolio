@@ -5,7 +5,7 @@ export default function Experience() {
   const isEn = i18n.language?.startsWith('en')
 
   return (
-    <section className="max-w-2xl mx-auto px-6 py-8 border-t border-gray-200">
+    <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-200">
       <h2 className="text-xl font-bold mb-6">{t('experience.title')}</h2>
 
       <div className="space-y-8">
