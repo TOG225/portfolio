@@ -17,6 +17,11 @@ export default defineConfig({
         target: 'http://backend:8000',
         changeOrigin: true,
       },
+      // Fichiers media Django (logos certifications, etc.) — même origine que le dev server
+      '/media': {
+        target: 'http://backend:8000',
+        changeOrigin: true,
+      },
     },
   },
 })

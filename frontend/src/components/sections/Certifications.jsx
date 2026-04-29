@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApi } from '@/hooks/useApi'
 
@@ -27,6 +28,56 @@ function getEmoji(issuer) {
   return ISSUER_EMOJI[issuer] || '📜'
 }
 
+/**
+ * URL utilisable dans <img src>.
+ * En dev : si l’API renvoie http://localhost:8000/media/..., on utilise /media/... pour passer
+ * par le proxy Vite (évite soucis cross-origin / réseau entre :5173 et :8000).
+ */
+function resolveMediaUrl(url) {
+  if (!url) return null
+
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    try {
+      const parsed = new URL(url)
+      if (import.meta.env.DEV && parsed.pathname.startsWith('/media/')) {
+        return `${parsed.pathname}${parsed.search}${parsed.hash}`
+      }
+    } catch {
+      /* ignore */
+    }
+    return url
+  }
+
+  const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
+  const origin = apiBase.replace(/\/api\/?$/, '')
+  return `${origin}${url.startsWith('/') ? '' : '/'}${url}`
+}
+
+function CertificationBadge({ cert }) {
+  const rawLogo =
+    cert.logo_url ||
+    (cert.logo && typeof cert.logo === 'string' ? cert.logo : null)
+  const logoSrc = resolveMediaUrl(rawLogo)
+  const [imgFailed, setImgFailed] = useState(false)
+
+  if (logoSrc && !imgFailed) {
+    return (
+      <img
+        key={logoSrc}
+        src={logoSrc}
+        alt=""
+        className="w-10 h-10 mx-auto mb-2 object-contain"
+        loading="lazy"
+        decoding="async"
+        referrerPolicy="no-referrer"
+        onError={() => setImgFailed(true)}
+      />
+    )
+  }
+
+  return <div className="text-3xl mb-2">{getEmoji(cert.issuer)}</div>
+}
+
 export default function Certifications() {
   const { t } = useTranslation()
   const { data, loading } = useApi('/certifications/certifications/', { page_size: 50 })
@@ -51,7 +102,7 @@ export default function Certifications() {
                 {...props}
                 className="block border border-gray-200 rounded-lg p-3 hover:border-blue-300 hover:shadow-sm transition-all text-center"
               >
-                <div className="text-3xl mb-2">{getEmoji(cert.issuer)}</div>
+                <CertificationBadge cert={cert} />
                 <div className="text-xs font-semibold text-gray-900 leading-tight mb-1">{cert.name}</div>
                 {cert.issuer && (
                   <div className="text-xs text-gray-500">{cert.issuer}</div>

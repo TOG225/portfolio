@@ -14,7 +14,11 @@ class CertificationSerializer(serializers.ModelSerializer):
         ]
 
     def get_logo_url(self, obj):
-        if not obj.logo:
-            return None
+        """URL absolue du fichier uploadé, sinon URL externe stockée sur le modèle."""
         request = self.context.get('request')
-        return request.build_absolute_uri(obj.logo.url) if request else obj.logo.url
+        if obj.logo:
+            path = obj.logo.url
+            return request.build_absolute_uri(path) if request else path
+        if obj.logo_url:
+            return obj.logo_url
+        return None
