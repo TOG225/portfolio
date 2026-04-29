@@ -12,16 +12,18 @@ export default function Hero() {
         {t('hero.bio_p1')}
       </p>
 
-      <p className="text-base text-gray-800 leading-relaxed mb-8">
-        {t('hero.bio_p2')}
-      </p>
+      {t('hero.bio_p2') && (
+        <p className="text-base text-gray-800 leading-relaxed mb-8">
+          {t('hero.bio_p2')}
+        </p>
+      )}
 
       <nav className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-        <a href="/cv.pdf" className="text-blue-600 hover:underline">{t('hero.cv')}</a>
+        <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{t('hero.cv')}</a>
         <span className="text-gray-300">·</span>
         <a href="https://github.com/TOG225" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">GitHub</a>
         <span className="text-gray-300">·</span>
-        <a href="https://linkedin.com/in/oklin-ghislain-toure" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/oklin-ghislain-tour%C3%A9-635722338/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">LinkedIn</a>
         <span className="text-gray-300">·</span>
         <a href="mailto:o.ghislain@hestim.ma" className="text-blue-600 hover:underline">Email</a>
       </nav>

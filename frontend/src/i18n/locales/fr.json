@@ -8,8 +8,8 @@
   },
   "hero": {
     "title": "À propos",
-    "bio_p1": "Étudiant en cycle ingénieur Informatique, IA & Cybersécurité à HESTIM Casablanca, je suis orienté sécurité offensive (pentest) et analyse SOC.",
-    "bio_p2": "Je développe mes compétences via TryHackMe, la threat intelligence avec MISP, l'automatisation défensive (Ansible, Terraform) et les bonnes pratiques NIST 2.0.",
+    "bio_p1": "Étudiant en cycle ingénieur Informatique, IA & Cybersécurité, je me spécialise dans la sécurité offensive et la défense active des infrastructures. Mon approche combine l’analyse de vulnérabilités (Pentest) et la mise en place de stratégies de détection avancées (SOC). Expert dans l'usage de la Threat Intelligence avec MISP, je mise sur l'automatisation via Ansible et Terraform pour bâtir des environnements résilients et sécurisés dès leur conception. Rigoureux et passionné par la culture CTF, j'aligne mes interventions techniques sur les standards du framework NIST 2.0 afin de transformer les problématiques de sécurité complexes en solutions opérationnelles durables.",
+    "bio_p2": "",
     "cv": "→ CV"
   },
   "experience": {

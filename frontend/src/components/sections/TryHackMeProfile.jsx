@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApi } from '@/hooks/useApi'
 
@@ -34,18 +35,19 @@ const PLATFORM_INFO = {
   },
 }
 
-function PlatformIcon({ info }) {
-  if (info.logo) {
-    return (
-      <img
-        src={info.logo}
-        alt={info.name}
-        className="w-8 h-8 rounded object-contain"
-        onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'block' }}
-      />
-    )
-  }
-  return <span className="text-2xl">{info.icon}</span>
+function PlatformLogo({ platform, info }) {
+  const [showFallback, setShowFallback] = useState(false)
+  const logoSrc = platform.logo || info.logo
+  if (!logoSrc || showFallback) return <span className="text-2xl">{info.icon}</span>
+
+  return (
+    <img
+      src={logoSrc}
+      alt={info.name}
+      className="w-8 h-8 rounded object-contain"
+      onError={() => setShowFallback(true)}
+    />
+  )
 }
 
 export default function TryHackMeProfile() {
@@ -77,8 +79,7 @@ export default function TryHackMeProfile() {
               >
                 <div className="flex items-start gap-3">
                   <div className="flex-shrink-0 flex items-center justify-center w-8 h-8">
-                    <PlatformIcon info={info} />
-                    <span className="text-2xl hidden">{info.icon}</span>
+                    <PlatformLogo platform={p} info={info} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="font-semibold text-gray-900">{info.name}</div>

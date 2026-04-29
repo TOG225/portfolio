@@ -15,8 +15,8 @@ const CONTACTS = [
   },
   {
     icon: Linkedin, label: 'LinkedIn',
-    value: 'oklin-ghislain-touré',
-    href: 'https://linkedin.com',
+    value: 'oklin-ghislain-touré-635722338',
+    href: 'https://www.linkedin.com/in/oklin-ghislain-tour%C3%A9-635722338/',
     external: true,
   },
   {

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-export default function Education() {
+export default function AcademicEducation() {
   const { t, i18n } = useTranslation()
   const isEn = i18n.language?.startsWith('en')
 
@@ -36,14 +36,7 @@ export default function Education() {
           </p>
         </div>
 
-        <div>
-          <div className="flex justify-between items-baseline mb-1 flex-wrap gap-x-2">
-            <h3 className="font-semibold">
-              {isEn ? 'Baccalauréat Series D (Scientific)' : 'Baccalauréat Série D (Scientifique)'}
-            </h3>
-            <span className="text-sm text-gray-500 italic whitespace-nowrap">2020</span>
-          </div>
-        </div>
+        
 
       </div>
     </section>

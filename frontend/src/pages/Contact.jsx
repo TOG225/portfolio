@@ -23,7 +23,7 @@ export default function Contact() {
             </li>
             <li>
               <span className="font-semibold inline-block w-28 text-gray-700">{t('contact.linkedin')}</span>
-              <a href="https://linkedin.com/in/oklin-ghislain-toure" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">oklin-ghislain-toure</a>
+              <a href="https://www.linkedin.com/in/oklin-ghislain-tour%C3%A9-635722338/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">oklin-ghislain-touré-635722338</a>
             </li>
             <li>
               <span className="font-semibold inline-block w-28 text-gray-700">{t('contact.github')}</span>

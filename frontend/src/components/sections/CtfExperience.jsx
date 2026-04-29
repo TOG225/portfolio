@@ -1,7 +1,24 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApi } from '@/hooks/useApi'
 
 const POSITION_ICONS = { 1: '🥇', 2: '🥈', 3: '🥉' }
+
+function EventLogo({ event }) {
+  const [showFallback, setShowFallback] = useState(false)
+  const fallback = POSITION_ICONS[event.position] ?? '🎯'
+
+  if (!event.logo || showFallback) return <span className="text-lg">{fallback}</span>
+
+  return (
+    <img
+      src={event.logo}
+      alt={event.name}
+      className="w-5 h-5 rounded object-contain"
+      onError={() => setShowFallback(true)}
+    />
+  )
+}
 
 export default function CtfExperience() {
   const { t } = useTranslation()
@@ -23,7 +40,7 @@ export default function CtfExperience() {
           {events.map((event) => (
             <li key={event.id}>
               <div className="flex items-baseline gap-2 mb-1 flex-wrap">
-                <span className="text-lg">{POSITION_ICONS[event.position] ?? '🎯'}</span>
+                <EventLogo event={event} />
                 <h3 className="font-semibold">
                   {event.event_url ? (
                     <a href={event.event_url} target="_blank" rel="noopener noreferrer" className="hover:underline">
