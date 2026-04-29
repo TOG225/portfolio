@@ -14,6 +14,8 @@ export default function ProjectDetail() {
   const { t, i18n } = useTranslation()
   const { data: project, loading, error } = useApi(`/projects/projects/${slug}/`)
   const isEn = i18n.language?.startsWith('en')
+  const lastTab = localStorage.getItem('projects_last_tab') || 'academic'
+  const backUrl = `/projects?tab=${lastTab}`
 
   if (loading) {
     return (
@@ -26,7 +28,7 @@ export default function ProjectDetail() {
   if (error || !project) {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <Link to="/projects" className="text-blue-600 hover:underline text-sm">
+        <Link to={backUrl} className="text-blue-600 hover:underline text-sm">
           ← {isEn ? 'Back to projects' : 'Retour aux projets'}
         </Link>
         <p className="mt-4 text-gray-700">

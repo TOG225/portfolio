@@ -33,7 +33,7 @@ export default function Certifications() {
   const certs = (data?.results && data.results.length > 0) ? data.results : FALLBACK_CERTS
 
   return (
-    <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-200">
+    <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-200">
       <h2 className="text-xl font-bold mb-6">{t('certifications.title')}</h2>
 
       {loading && <p className="text-sm text-gray-500">{t('common.loading')}</p>}
