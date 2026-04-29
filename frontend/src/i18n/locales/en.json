@@ -62,7 +62,10 @@
     "comment_placeholder": "Your comment...",
     "comment_submit": "Submit",
     "comment_sent": "Thank you! Your comment will be visible after moderation.",
-    "comment_error": "An error occurred. Please try again."
+    "comment_error": "An error occurred. Please try again.",
+    "search_placeholder": "Search articles...",
+    "search_results": "{{count}} result{{count, plural, one {} other {s}}} for \"{{query}}\"",
+    "search_no_results": "No results for \"{{query}}\""
   },
   "contact": {
     "title": "Contact",

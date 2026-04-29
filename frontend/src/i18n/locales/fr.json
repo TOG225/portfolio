@@ -62,7 +62,10 @@
     "comment_placeholder": "Votre commentaire...",
     "comment_submit": "Envoyer",
     "comment_sent": "Merci ! Votre commentaire sera visible après modération.",
-    "comment_error": "Une erreur est survenue. Veuillez réessayer."
+    "comment_error": "Une erreur est survenue. Veuillez réessayer.",
+    "search_placeholder": "Rechercher un article...",
+    "search_results": "{{count}} résultat{{count, plural, one {} other {s}}} pour « {{query}} »",
+    "search_no_results": "Aucun résultat pour « {{query}} »"
   },
   "contact": {
     "title": "Contact",
