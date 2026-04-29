@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'certifications.apps.CertificationsConfig',
     'skills.apps.SkillsConfig',
+    'ctf.apps.CtfConfig',
 ]
 
 MIDDLEWARE = [

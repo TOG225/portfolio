@@ -1,11 +1,11 @@
-import SEO            from '@/components/seo/SEO'
+import SEO             from '@/components/seo/SEO'
 import Hero             from '@/components/sections/Hero'
-import Education        from '@/components/sections/Education'
 import Experience       from '@/components/sections/Experience'
 import FeaturedProjects from '@/components/sections/FeaturedProjects'
-import Writings         from '@/components/sections/Writings'
+import Education        from '@/components/sections/Education'
 import Certifications   from '@/components/sections/Certifications'
-import Skills           from '@/components/sections/Skills'
+import CtfExperience    from '@/components/sections/CtfExperience'
+import TryHackMeProfile from '@/components/sections/TryHackMeProfile'
 
 export default function Home() {
   return (
@@ -16,12 +16,12 @@ export default function Home() {
         url="/"
       />
       <Hero />
-      <Education />
       <Experience />
       <FeaturedProjects />
-      <Writings />
+      <Education />
       <Certifications />
-      <Skills />
+      <CtfExperience />
+      <TryHackMeProfile />
     </>
   )
 }

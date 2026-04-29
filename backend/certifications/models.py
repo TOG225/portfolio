@@ -8,6 +8,7 @@ class Certification(models.Model):
     issuer = models.CharField(max_length=100, verbose_name='Organisme émetteur')
     logo = models.ImageField(upload_to='cert_logos/', blank=True, verbose_name='Logo')
     credential_url = models.URLField(blank=True, verbose_name='Lien Credly / Coursera')
+    logo_url = models.URLField(blank=True, verbose_name='URL logo externe', help_text='URL vers le logo officiel (optionnel)')
     date_obtained = models.DateField(verbose_name="Date d'obtention")
     is_featured = models.BooleanField(default=False, verbose_name='En vedette')
     order = models.PositiveIntegerField(default=0, verbose_name='Ordre')

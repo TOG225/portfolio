@@ -1,8 +1,12 @@
+import { useTranslation } from 'react-i18next'
+
 export default function Footer() {
+  const { t } = useTranslation()
+
   return (
     <footer className="border-t border-gray-200 mt-16">
       <div className="max-w-2xl mx-auto px-6 py-6 text-xs text-gray-500 text-center">
-        © 2026 Ghislain Touré · Built with Django + React
+        © 2026 Ghislain Touré · {t('footer.built_with')}
       </div>
     </footer>
   )

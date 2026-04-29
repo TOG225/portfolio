@@ -10,6 +10,7 @@ class TagSerializer(serializers.ModelSerializer):
 
 class ArticleListSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True, read_only=True)
+    cover_image = serializers.SerializerMethodField()
 
     class Meta:
         model = Article
@@ -18,21 +19,27 @@ class ArticleListSerializer(serializers.ModelSerializer):
             'tags', 'reading_time', 'published_at',
         ]
 
+    def get_cover_image(self, obj):
+        if not obj.cover_image:
+            return None
+        request = self.context.get('request')
+        return request.build_absolute_uri(obj.cover_image.url) if request else obj.cover_image.url
+
 
 class ArticleDetailSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True, read_only=True)
-    cover_image_url = serializers.SerializerMethodField()
+    cover_image = serializers.SerializerMethodField()
 
     class Meta:
         model = Article
         fields = [
             'id', 'title', 'slug', 'excerpt', 'content',
-            'cover_image', 'cover_image_url', 'tags',
+            'cover_image', 'tags',
             'reading_time', 'is_published', 'published_at',
             'created_at', 'updated_at',
         ]
 
-    def get_cover_image_url(self, obj):
+    def get_cover_image(self, obj):
         if not obj.cover_image:
             return None
         request = self.context.get('request')

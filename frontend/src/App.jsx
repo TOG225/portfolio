@@ -13,6 +13,7 @@ const ProjectDetail = lazy(() => import('@/pages/ProjectDetail'))
 const Blog          = lazy(() => import('@/pages/Blog'))
 const ArticleDetail = lazy(() => import('@/pages/ArticleDetail'))
 const Contact       = lazy(() => import('@/pages/Contact'))
+const CTF           = lazy(() => import('@/pages/CTF'))
 
 function PageLoader() {
   return (
@@ -39,6 +40,7 @@ export default function App() {
                 <Route path="/blog"            element={<Blog />} />
                 <Route path="/blog/:slug"      element={<ArticleDetail />} />
                 <Route path="/contact"         element={<Contact />} />
+                <Route path="/ctf"            element={<CTF />} />
                 <Route path="*"               element={<NotFound />} />
               </Routes>
             </Suspense>

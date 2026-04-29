@@ -1,0 +1,79 @@
+{
+  "navbar": {
+    "home": "Accueil",
+    "projects": "Projets",
+    "blog": "Blog",
+    "ctf": "CTF",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "À propos",
+    "bio_p1": "Étudiant en deuxième année du cycle ingénieur en Informatique, IA & Cybersécurité à HESTIM Casablanca. Orienté sécurité offensive (pentest) et SOC analyst, je m'intéresse particulièrement à la threat intelligence avec MISP, à l'automatisation d'infrastructures défensives (Ansible, Terraform) et aux frameworks de gouvernance NIST 2.0.",
+    "bio_p2": "Actuellement à la recherche d'un stage PFA pour mettre en pratique ces compétences sur des projets concrets.",
+    "cv": "→ CV"
+  },
+  "experience": {
+    "title": "Expérience",
+    "internship": "Stage"
+  },
+  "projects": {
+    "title": "Projets",
+    "featured_title": "Projet vedette",
+    "all_title": "Autres projets",
+    "tab_academic": "Académiques",
+    "tab_personal": "Personnels",
+    "view_project": "Voir le projet",
+    "read_more": "Lire la suite",
+    "no_projects": "Aucun projet pour le moment.",
+    "see_all": "Voir tous les projets →",
+    "stack": "Stack"
+  },
+  "education": {
+    "title": "Éducation",
+    "courses_label": "Cours principaux"
+  },
+  "certifications": {
+    "title": "Certifications",
+    "verify": "Vérifier",
+    "issued_by": "Émis par"
+  },
+  "ctf": {
+    "title": "Expérience CTF",
+    "with_team": "avec",
+    "category": "Catégorie",
+    "prize": "Prix",
+    "no_events": "Coming soon — premières participations prévues en 2026.",
+    "platforms_title": "Mes profils",
+    "view_profile": "Voir le profil"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Notes techniques, retours d'expérience et veille cybersécurité.",
+    "no_articles": "Aucun article pour le moment.",
+    "min_read": "min de lecture",
+    "back": "← Retour aux articles"
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "N'hésitez pas à me contacter pour toute opportunité de stage, collaboration technique, ou simplement pour discuter cybersécurité.",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "location": "Localisation",
+    "form_title": "Ou envoyez-moi un message",
+    "form_name": "Nom",
+    "form_email": "Email",
+    "form_subject": "Sujet",
+    "form_message": "Message",
+    "form_submit": "Envoyer",
+    "form_sending": "Envoi...",
+    "form_success": "Message envoyé avec succès. Je reviens vers vous dès que possible."
+  },
+  "footer": {
+    "built_with": "Construit avec Django + React"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "back": "← Retour"
+  }
+}

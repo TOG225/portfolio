@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useApi } from '@/hooks/useApi'
 import SEO from '@/components/seo/SEO'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
@@ -11,12 +12,13 @@ const formatDate = (str) => {
 
 export default function ProjectDetail() {
   const { slug } = useParams()
+  const { t } = useTranslation()
   const { data: project, loading, error } = useApi(`/projects/projects/${slug}/`)
 
   if (loading) {
     return (
       <div className="max-w-2xl mx-auto px-6 pt-20">
-        <p className="text-sm text-gray-500">Loading...</p>
+        <p className="text-sm text-gray-500">{t('common.loading')}</p>
       </div>
     )
   }
@@ -27,7 +29,7 @@ export default function ProjectDetail() {
         <SEO title="Project not found" />
         <div className="max-w-2xl mx-auto px-6 pt-20">
           <p className="text-sm text-gray-700 mb-4">Project not found.</p>
-          <Link to="/projects" className="text-blue-600 hover:underline text-sm">← Back to projects</Link>
+          <Link to="/projects" className="text-blue-600 hover:underline text-sm">{t('common.back')}</Link>
         </div>
       </>
     )
@@ -57,7 +59,7 @@ export default function ProjectDetail() {
       <div className="max-w-2xl mx-auto px-6 pt-16 pb-16">
 
         <Link to="/projects" className="text-sm text-blue-600 hover:underline block mb-8">
-          ← Back to projects
+          {t('common.back')}
         </Link>
 
         <h1 className="text-2xl font-bold mb-2">{title}</h1>

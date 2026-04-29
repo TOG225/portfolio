@@ -1,9 +1,11 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import SEO from '@/components/seo/SEO'
 import { useApi } from '@/hooks/useApi'
 
 function ProjectListItem({ project: p }) {
+  const { t } = useTranslation()
   return (
     <li>
       <h3 className="font-semibold mb-1">{p.title}</h3>
@@ -12,7 +14,7 @@ function ProjectListItem({ project: p }) {
         <p className="text-xs text-gray-500 mb-2">Stack : {p.tech_stack.join(', ')}</p>
       )}
       <div className="text-sm space-x-3">
-        <Link to={`/projects/${p.slug}`} className="text-blue-600 hover:underline">Read more →</Link>
+        <Link to={`/projects/${p.slug}`} className="text-blue-600 hover:underline">{t('projects.read_more')} →</Link>
         {p.has_report && p.report_pdf_url && (
           <a href={p.report_pdf_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">PDF</a>
         )}
@@ -25,6 +27,7 @@ function ProjectListItem({ project: p }) {
 }
 
 export default function Projects() {
+  const { t } = useTranslation()
   const [tab, setTab] = useState('academic')
 
   const params = useMemo(() => ({ project_type: tab, page_size: 50 }), [tab])
@@ -44,35 +47,33 @@ export default function Projects() {
   return (
     <>
       <SEO
-        title="Projects — Ghislain Touré"
+        title={`${t('projects.title')} — Ghislain Touré`}
         description="Projets cybersécurité académiques et personnels : pentest, SOC, MISP, forensique."
         url="/projects"
       />
       <section className="max-w-2xl mx-auto px-6 pt-20 pb-12">
-        <h1 className="text-3xl font-bold mb-6">Projects</h1>
+        <h1 className="text-3xl font-bold mb-6">{t('projects.title')}</h1>
 
         <div className="text-sm mb-8">
           <button
             onClick={() => setTab('academic')}
             className={tab === 'academic' ? 'font-semibold text-gray-900' : 'text-gray-600 hover:underline'}
           >
-            Academic
+            {t('projects.tab_academic')}
           </button>
           <span className="mx-3 text-gray-300">·</span>
           <button
             onClick={() => setTab('personal')}
             className={tab === 'personal' ? 'font-semibold text-gray-900' : 'text-gray-600 hover:underline'}
           >
-            Personal
+            {t('projects.tab_personal')}
           </button>
         </div>
 
-        {loading && <p className="text-sm text-gray-500">Loading...</p>}
+        {loading && <p className="text-sm text-gray-500">{t('common.loading')}</p>}
 
         {!loading && projects.length === 0 && (
-          <p className="text-sm text-gray-500 italic">
-            {tab === 'personal' ? 'Coming soon.' : 'No projects yet.'}
-          </p>
+          <p className="text-sm text-gray-500 italic">{t('projects.no_projects')}</p>
         )}
 
         {!loading && tab === 'academic' && Object.keys(grouped).length > 0 && (

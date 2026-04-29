@@ -1,0 +1,79 @@
+{
+  "navbar": {
+    "home": "Home",
+    "projects": "Projects",
+    "blog": "Blog",
+    "ctf": "CTF",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "About Me",
+    "bio_p1": "Second-year engineering student in Computer Science, AI & Cybersecurity at HESTIM Casablanca. Focused on offensive security (pentest) and SOC analysis, with particular interest in threat intelligence with MISP, defensive infrastructure automation (Ansible, Terraform), and NIST 2.0 governance frameworks.",
+    "bio_p2": "Currently looking for a PFA internship to put these skills into practice on real-world projects.",
+    "cv": "→ Resume"
+  },
+  "experience": {
+    "title": "Experience",
+    "internship": "Internship"
+  },
+  "projects": {
+    "title": "Projects",
+    "featured_title": "Featured project",
+    "all_title": "More projects",
+    "tab_academic": "Academic",
+    "tab_personal": "Personal",
+    "view_project": "View project",
+    "read_more": "Read more",
+    "no_projects": "No projects yet.",
+    "see_all": "See all projects →",
+    "stack": "Stack"
+  },
+  "education": {
+    "title": "Education",
+    "courses_label": "Key courses"
+  },
+  "certifications": {
+    "title": "Certifications",
+    "verify": "Verify",
+    "issued_by": "Issued by"
+  },
+  "ctf": {
+    "title": "CTF Experience",
+    "with_team": "with",
+    "category": "Category",
+    "prize": "Prize",
+    "no_events": "Coming soon — first participations planned for 2026.",
+    "platforms_title": "My profiles",
+    "view_profile": "View profile"
+  },
+  "blog": {
+    "title": "Writings",
+    "subtitle": "Technical notes, lessons learned and cybersecurity insights.",
+    "no_articles": "No writings yet.",
+    "min_read": "min read",
+    "back": "← Back to writings"
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Feel free to reach out for any internship opportunity, technical collaboration, or just to discuss cybersecurity.",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "location": "Location",
+    "form_title": "Or send me a message",
+    "form_name": "Name",
+    "form_email": "Email",
+    "form_subject": "Subject",
+    "form_message": "Message",
+    "form_submit": "Send",
+    "form_sending": "Sending...",
+    "form_success": "Message sent successfully. I'll get back to you as soon as possible."
+  },
+  "footer": {
+    "built_with": "Built with Django + React"
+  },
+  "common": {
+    "loading": "Loading...",
+    "back": "← Back"
+  }
+}
