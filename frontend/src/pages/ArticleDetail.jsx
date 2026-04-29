@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useApi } from '@/hooks/useApi'
@@ -11,7 +11,7 @@ const formatDate = (iso) => {
   return new Date(iso).toISOString().split('T')[0]
 }
 
-function CommentForm({ slug }) {
+function CommentForm({ slug, onSubmitted }) {
   const { t } = useTranslation()
   const [form, setForm] = useState({ author_name: '', author_email: '', content: '' })
   const [status, setStatus] = useState(null)
@@ -25,9 +25,10 @@ function CommentForm({ slug }) {
     setSubmitting(true)
     setStatus(null)
     try {
-      await client.post(`/blog/articles/${slug}/comments/`, form)
+      const res = await client.post(`/blog/articles/${slug}/comments/`, form)
       setStatus('success')
       setForm({ author_name: '', author_email: '', content: '' })
+      if (res?.data?.comment && onSubmitted) onSubmitted(res.data.comment)
     } catch {
       setStatus('error')
     } finally {
@@ -88,21 +89,34 @@ function CommentForm({ slug }) {
 
 function CommentsSection({ slug }) {
   const { t } = useTranslation()
-  const { data: comments, loading } = useApi(`/blog/articles/${slug}/comments/`)
+  const { data: comments, loading, error } = useApi(`/blog/articles/${slug}/comments/`)
+  const [allComments, setAllComments] = useState([])
+
+  useEffect(() => {
+    setAllComments(Array.isArray(comments) ? comments : [])
+  }, [comments])
+
+  const handleCommentSubmitted = (newComment) => {
+    if (!newComment) return
+    setAllComments((prev) => [...prev, newComment])
+  }
 
   return (
     <div className="mt-16 border-t border-gray-200 pt-10">
       <h2 className="text-lg font-bold mb-6">{t('blog.comments_title')}</h2>
 
       {loading && <p className="text-sm text-gray-500">{t('common.loading')}</p>}
+      {!loading && error && (
+        <p className="text-sm text-red-600 mb-6">{t('blog.comment_error')}</p>
+      )}
 
-      {!loading && (!comments || comments.length === 0) && (
+      {!loading && !error && allComments.length === 0 && (
         <p className="text-sm text-gray-500 italic mb-6">{t('blog.no_comments')}</p>
       )}
 
-      {!loading && comments && comments.length > 0 && (
+      {!loading && !error && allComments.length > 0 && (
         <ul className="space-y-4 mb-8">
-          {comments.map(c => (
+          {allComments.map(c => (
             <li key={c.id} className="border border-gray-200 rounded-lg p-4">
               <div className="flex items-baseline justify-between gap-2 mb-2">
                 <span className="font-semibold text-sm">{c.author_name}</span>
@@ -116,8 +130,7 @@ function CommentsSection({ slug }) {
 
       <div>
         <h3 className="text-sm font-semibold text-gray-900 mb-1">{t('blog.leave_comment')}</h3>
-        <p className="text-xs text-gray-500 mb-1">{t('blog.comment_moderation')}</p>
-        <CommentForm slug={slug} />
+        <CommentForm slug={slug} onSubmitted={handleCommentSubmitted} />
       </div>
     </div>
   )
@@ -234,8 +247,8 @@ export default function ArticleDetail() {
           <p className="text-sm text-gray-500 italic">Content not available.</p>
         )}
 
-        <RelatedArticles currentSlug={slug} />
         <CommentsSection slug={slug} />
+        <RelatedArticles currentSlug={slug} />
       </div>
     </>
   )

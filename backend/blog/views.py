@@ -12,7 +12,7 @@ from .serializers import (
 
 
 class CommentRateThrottle(AnonRateThrottle):
-    rate = '5/hour'
+    rate = '30/hour'
 
 
 class TagViewSet(viewsets.ReadOnlyModelViewSet):
@@ -43,6 +43,12 @@ class ArticleViewSet(viewsets.ReadOnlyModelViewSet):
 class ArticleCommentView(APIView):
     throttle_classes = [CommentRateThrottle]
 
+    def get_throttles(self):
+        # Limit only comment submissions, not reads.
+        if self.request.method == 'POST':
+            return [CommentRateThrottle()]
+        return []
+
     def get(self, request, slug):
         article = get_object_or_404(Article, slug=slug, is_published=True)
         comments = article.comments.filter(is_approved=True)
@@ -53,9 +59,12 @@ class ArticleCommentView(APIView):
         article = get_object_or_404(Article, slug=slug, is_published=True)
         serializer = CommentCreateSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(article=article)
+            comment = serializer.save(article=article, is_approved=True)
             return Response(
-                {'detail': 'Commentaire soumis — il sera visible après modération.'},
+                {
+                    'detail': 'Commentaire publié.',
+                    'comment': CommentSerializer(comment).data,
+                },
                 status=status.HTTP_201_CREATED,
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
