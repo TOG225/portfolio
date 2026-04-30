@@ -1,4 +1,4 @@
-# Portfolio Ghislain Touré
+# Portfolio 0xL@toure
 
 Portfolio personnel full-stack présentant projets académiques, veille technique, certifications et compétences.
 
@@ -55,10 +55,9 @@ portfolio/
 ├── docker-compose.yml
 ├── .env.example
 ├── .gitignore
-├── VISION.md
 └── README.md
 ```
 
 ## Auteur
 
-**Ghislain Touré** — [toureoklin2@gmail.com](mailto:toureoklin2@gmail.com)
+**Ghislain Touré** — 0xL@toure
