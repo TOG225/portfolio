@@ -3,17 +3,20 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+*.pyc
 venv/
 .venv/
 env/
 *.egg-info/
-dist/
 build/
 .eggs/
 
 # Django
 .env
+.env.local
+.env.production
 db.sqlite3
+*.sqlite3
 staticfiles/
 media/
 *.log
@@ -37,3 +40,6 @@ dist/
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# Docker
+docker-compose.override.yml
