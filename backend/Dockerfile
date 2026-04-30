@@ -18,6 +18,9 @@ COPY . .
 
 RUN python manage.py collectstatic --noinput || true
 
+RUN chmod +x /app/start.sh
+
 EXPOSE 8000
 
-CMD gunicorn core.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 2
+# Même logique que start.sh — pas de JSONArgs single string (signaux) : on exécute le script.
+CMD ["/app/start.sh"]
