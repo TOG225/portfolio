@@ -4,6 +4,7 @@ import { useApi } from '@/hooks/useApi'
 import SEO from '@/components/seo/SEO'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
 import { Github, ExternalLink, Download } from 'lucide-react'
+import { sameOriginMediaUrl } from '@/utils/mediaUrl'
 
 function getInitials(title) {
   return title.split(' ').filter(w => w.length > 2).map(w => w[0]).slice(0, 3).join('').toUpperCase() || 'P'
@@ -38,12 +39,15 @@ export default function ProjectDetail() {
     )
   }
 
+  const thumbnailSrc = sameOriginMediaUrl(project.thumbnail)
+  const reportPdfSrc = sameOriginMediaUrl(project.report_pdf)
+
   return (
     <>
       <SEO
         title={project.title}
         description={project.description_short}
-        image={project.thumbnail}
+        image={thumbnailSrc || project.thumbnail}
       />
 
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -53,9 +57,9 @@ export default function ProjectDetail() {
         </Link>
 
         {/* Cover image */}
-        {project.thumbnail ? (
+        {thumbnailSrc ? (
           <img
-            src={project.thumbnail}
+            src={thumbnailSrc}
             alt={project.title}
             className="w-full aspect-video object-cover rounded-lg mb-8"
             loading="lazy"
@@ -120,8 +124,8 @@ export default function ProjectDetail() {
               <ExternalLink size={16} /> {isEn ? 'Demo' : 'Démo'}
             </a>
           )}
-          {project.report_pdf && (
-            <a href={project.report_pdf} target="_blank" rel="noopener noreferrer"
+          {reportPdfSrc && (
+            <a href={reportPdfSrc} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-600 hover:underline">
               <Download size={16} /> {isEn ? 'Download PDF' : 'Télécharger le PDF'}
             </a>
@@ -136,14 +140,14 @@ export default function ProjectDetail() {
         )}
 
         {/* PDF viewer pleine page */}
-        {project.report_pdf && (
+        {reportPdfSrc && (
           <div className="border-t border-gray-200 pt-8 mt-8">
             <h2 className="text-xl font-bold mb-4">
               {isEn ? 'Full report' : 'Rapport complet'}
             </h2>
             <div className="w-full" style={{ height: '85vh' }}>
               <iframe
-                src={project.report_pdf}
+                src={`${reportPdfSrc}#toolbar=1`}
                 title={`${project.title} - Report`}
                 className="w-full h-full border border-gray-200 rounded-lg"
                 loading="lazy"
@@ -151,7 +155,7 @@ export default function ProjectDetail() {
             </div>
             <p className="text-xs text-gray-500 mt-2 text-center">
               {isEn ? "PDF not displaying correctly? " : "Le PDF ne s'affiche pas correctement ? "}
-              <a href={project.report_pdf} target="_blank" rel="noopener noreferrer"
+              <a href={reportPdfSrc} target="_blank" rel="noopener noreferrer"
                 className="text-blue-600 hover:underline">
                 {isEn ? 'Open in a new tab' : 'Ouvrir dans un nouvel onglet'}
               </a>
