@@ -35,11 +35,12 @@ function getEmoji(issuer) {
  */
 function resolveMediaUrl(url) {
   if (!url) return null
+  const isDev = import.meta.env.DEV
 
   if (url.startsWith('http://') || url.startsWith('https://')) {
     try {
       const parsed = new URL(url)
-      if (import.meta.env.DEV && parsed.pathname.startsWith('/media/')) {
+      if (isDev && parsed.pathname.startsWith('/media/')) {
         return `${parsed.pathname}${parsed.search}${parsed.hash}`
       }
     } catch {
@@ -48,7 +49,7 @@ function resolveMediaUrl(url) {
     return url
   }
 
-  const apiBase = import.meta.env.VITE_API_URL || '/api'
+  const apiBase = isDev ? (import.meta.env.VITE_API_URL || '/api') : '/api'
   const origin = apiBase.replace(/\/api\/?$/, '')
   return `${origin}${url.startsWith('/') ? '' : '/'}${url}`
 }

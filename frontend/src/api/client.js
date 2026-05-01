@@ -1,8 +1,12 @@
 import axios from 'axios'
 
+const isDev = import.meta.env.DEV
+const configuredApi = import.meta.env.VITE_API_URL
+const baseURL = isDev ? (configuredApi || '/api') : '/api'
+
 const client = axios.create({
-  // Utilise /api par defaut: en dev via proxy Vite, en prod via proxy Nginx.
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  // En production, forcer /api pour passer par le proxy Nginx (meme origine, pas de CORS).
+  baseURL,
   timeout: 10000,
   headers: { 'Content-Type': 'application/json' },
 })
