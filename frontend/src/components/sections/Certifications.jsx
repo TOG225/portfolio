@@ -81,7 +81,8 @@ function CertificationBadge({ cert }) {
 export default function Certifications() {
   const { t } = useTranslation()
   const { data, loading } = useApi('/certifications/certifications/', { page_size: 50 })
-  const certs = (data?.results && data.results.length > 0) ? data.results : FALLBACK_CERTS
+  const apiCerts = data?.results ?? []
+  const certs = import.meta.env.DEV && apiCerts.length === 0 ? FALLBACK_CERTS : apiCerts
 
   return (
     <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-200">
@@ -89,7 +90,7 @@ export default function Certifications() {
 
       {loading && <p className="text-sm text-gray-500">{t('common.loading')}</p>}
 
-      {!loading && (
+      {!loading && certs.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {certs.map(cert => {
             const Wrapper = cert.credential_url ? 'a' : 'div'
@@ -111,6 +112,10 @@ export default function Certifications() {
             )
           })}
         </div>
+      )}
+
+      {!loading && certs.length === 0 && (
+        <p className="text-sm text-gray-500">Aucune certification publiee pour le moment.</p>
       )}
     </section>
   )

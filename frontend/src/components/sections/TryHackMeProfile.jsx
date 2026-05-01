@@ -52,7 +52,7 @@ function PlatformLogo({ platform, info }) {
 
 export default function TryHackMeProfile() {
   const { t } = useTranslation()
-  const { data, loading } = useApi('/ctf/platforms/')
+  const { data, loading, error } = useApi('/ctf/platforms/')
   const platforms = data?.results ?? []
 
   return (
@@ -60,6 +60,12 @@ export default function TryHackMeProfile() {
       <h2 className="text-xl font-bold mb-6">{t('ctf.platforms_title')}</h2>
 
       {loading && <p className="text-sm text-gray-500">{t('common.loading')}</p>}
+
+      {!loading && error && (
+        <p className="text-sm text-red-600">
+          API error: {error}
+        </p>
+      )}
 
       {!loading && platforms.length === 0 && (
         <p className="text-sm text-gray-500 italic">{t('ctf.no_events')}</p>

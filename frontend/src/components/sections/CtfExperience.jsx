@@ -22,7 +22,7 @@ function EventLogo({ event }) {
 
 export default function CtfExperience() {
   const { t } = useTranslation()
-  const { data, loading } = useApi('/ctf/events/', { page_size: 20 })
+  const { data, loading, error } = useApi('/ctf/events/', { page_size: 20 })
   const events = data?.results ?? []
 
   return (
@@ -30,6 +30,12 @@ export default function CtfExperience() {
       <h2 className="text-xl font-bold mb-6"> {t('ctf.title')}</h2>
 
       {loading && <p className="text-sm text-gray-500">{t('common.loading')}</p>}
+
+      {!loading && error && (
+        <p className="text-sm text-red-600">
+          API error: {error}
+        </p>
+      )}
 
       {!loading && events.length === 0 && (
         <p className="text-sm text-gray-500 italic">{t('ctf.no_events')}</p>
