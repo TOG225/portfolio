@@ -48,7 +48,7 @@ function resolveMediaUrl(url) {
     return url
   }
 
-  const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
+  const apiBase = import.meta.env.VITE_API_URL || '/api'
   const origin = apiBase.replace(/\/api\/?$/, '')
   return `${origin}${url.startsWith('/') ? '' : '/'}${url}`
 }
