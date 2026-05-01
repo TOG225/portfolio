@@ -17,4 +17,4 @@ COPY nginx.conf /etc/nginx/templates/default.conf.template
 
 EXPOSE 8080
 
-CMD ["/bin/sh", "-c", "export PORT=${PORT:-8080}; export BACKEND_ORIGIN=${BACKEND_ORIGIN:-https://backend-production-96a0.up.railway.app}; envsubst '${PORT} ${BACKEND_ORIGIN}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -t && exec nginx -g 'daemon off;'"]
+CMD ["/bin/sh", "-c", "export PORT=${PORT:-8080}; envsubst '${PORT}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -t && exec nginx -g 'daemon off;'"]
