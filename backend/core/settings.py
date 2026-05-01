@@ -94,7 +94,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# Railway : monter un volume persistant sur ce chemin (ex. /app/media ou MEDIA_ROOT personnalisé).
+_media_root = os.environ.get('MEDIA_ROOT')
+MEDIA_ROOT = Path(_media_root) if _media_root else (BASE_DIR / 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

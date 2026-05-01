@@ -5,6 +5,9 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
+# Uploads admin (images, PDF) : sans volume Railway monté sur /app/media, les fichiers
+# sont perdus à chaque nouveau déploiement. Voir variables MEDIA_ROOT dans Railway.
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     libpq-dev \

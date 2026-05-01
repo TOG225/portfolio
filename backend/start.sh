@@ -2,6 +2,7 @@
 # Démarrage Railway : migration + static, puis Gunicorn en premier plan (remplace le shell = PID 1).
 set -e
 cd /app
+mkdir -p media
 PORT="${PORT:-8000}"
 export PORT
 echo "start.sh: PORT=$PORT"
