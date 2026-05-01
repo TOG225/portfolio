@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Document, Page, pdfjs } from 'react-pdf'
 import {
   ChevronLeft, ChevronRight,
@@ -8,7 +9,7 @@ import 'react-pdf/dist/Page/AnnotationLayer.css'
 import 'react-pdf/dist/Page/TextLayer.css'
 
 pdfjs.GlobalWorkerOptions.workerSrc =
-  `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
+  `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
 function ToolbarBtn({ onClick, disabled, title, children }) {
   return (
@@ -24,6 +25,7 @@ function ToolbarBtn({ onClick, disabled, title, children }) {
 }
 
 export default function PDFViewer({ pdfUrl, fileName = 'rapport.pdf' }) {
+  const { t } = useTranslation()
   const [numPages, setNumPages]   = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
   const [scale, setScale]         = useState(1.0)
@@ -50,10 +52,11 @@ export default function PDFViewer({ pdfUrl, fileName = 'rapport.pdf' }) {
   if (loadError) {
     return (
       <div className="rounded-xl border border-red-200 bg-red-50 p-8 text-center">
-        <p className="text-red-600 font-medium mb-2">Impossible de charger le PDF</p>
+        <p className="text-red-600 font-medium mb-2">{t('pdfViewer.load_error')}</p>
+        <p className="text-xs text-gray-600 mb-3">{t('pdfViewer.load_error_hint')}</p>
         <a href={pdfUrl} download={fileName}
-          className="text-sm text-accent underline hover:text-primary">
-          Télécharger directement
+          className="text-sm text-blue-600 underline hover:text-blue-800">
+          {t('pdfViewer.download_direct')}
         </a>
       </div>
     )
@@ -115,7 +118,7 @@ export default function PDFViewer({ pdfUrl, fileName = 'rapport.pdf' }) {
             loading={
               <div className="flex flex-col items-center justify-center py-20 gap-3">
                 <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
-                <p className="text-sm text-gray-500">Chargement du PDF…</p>
+                <p className="text-sm text-gray-500">{t('pdfViewer.loading')}</p>
               </div>
             }
           >

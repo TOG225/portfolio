@@ -89,5 +89,11 @@
   "common": {
     "loading": "Loading...",
     "back": "← Back"
+  },
+  "pdfViewer": {
+    "load_error": "Could not display the PDF.",
+    "load_error_hint": "The file may be missing on the server (e.g. after a deploy without a persistent volume) or access was denied. Re-upload the PDF in admin or use a volume on /app/media.",
+    "download_direct": "Download the file",
+    "loading": "Loading PDF…"
   }
 }

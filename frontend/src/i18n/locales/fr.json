@@ -89,5 +89,11 @@
   "common": {
     "loading": "Chargement...",
     "back": "← Retour"
+  },
+  "pdfViewer": {
+    "load_error": "Impossible d'afficher le PDF.",
+    "load_error_hint": "Fichier introuvable sur le serveur (souvent après un déploiement sans volume) ou accès refusé. Téléchargez le fichier ou republiez le PDF dans l'admin.",
+    "download_direct": "Télécharger le fichier",
+    "loading": "Chargement du PDF…"
   }
 }

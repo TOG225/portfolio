@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useApi } from '@/hooks/useApi'
 import SEO from '@/components/seo/SEO'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
+import PDFViewer from '@/components/ui/PDFViewer'
 import { Github, ExternalLink, Download } from 'lucide-react'
 import { sameOriginMediaUrl } from '@/utils/mediaUrl'
 
@@ -139,22 +140,17 @@ export default function ProjectDetail() {
           </div>
         )}
 
-        {/* PDF viewer pleine page */}
+        {/* PDF : react-pdf (évite l’iframe navigateur souvent vide sur PDF proxifiés / cross-origin) */}
         {reportPdfSrc && (
           <div className="border-t border-gray-200 pt-8 mt-8">
             <h2 className="text-xl font-bold mb-4">
               {isEn ? 'Full report' : 'Rapport complet'}
             </h2>
-            <div className="w-full" style={{ height: '85vh' }}>
-              <iframe
-                src={`${reportPdfSrc}#toolbar=1`}
-                title={`${project.title} - Report`}
-                className="w-full h-full border border-gray-200 rounded-lg"
-                loading="lazy"
-              />
-            </div>
-            <p className="text-xs text-gray-500 mt-2 text-center">
-              {isEn ? "PDF not displaying correctly? " : "Le PDF ne s'affiche pas correctement ? "}
+            <PDFViewer
+              pdfUrl={reportPdfSrc}
+              fileName={`${project.slug || 'rapport'}.pdf`}
+            />
+            <p className="text-xs text-gray-500 mt-3 text-center">
               <a href={reportPdfSrc} target="_blank" rel="noopener noreferrer"
                 className="text-blue-600 hover:underline">
                 {isEn ? 'Open in a new tab' : 'Ouvrir dans un nouvel onglet'}
