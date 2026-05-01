@@ -84,7 +84,7 @@
     "form_success": "Message envoyé avec succès. Je reviens vers vous dès que possible."
   },
   "footer": {
-    "built_with": "Construit avec Django + React"
+    "line": "2026 0xL@toure"
   },
   "common": {
     "loading": "Chargement...",
